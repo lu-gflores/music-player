@@ -32,7 +32,7 @@ const Player = ({currentSong, isPlaying, setIsPlaying}) => {
         currentTime: 0,
         duration: 0
     })
-    
+    //update state of song when user drags the range 
     const dragHandler = e => {
         audioRef.current.currentTime = e.target.value
         setSongInfo({...songInfo, currentTime:e.target.value})
