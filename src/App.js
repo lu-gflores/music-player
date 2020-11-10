@@ -18,7 +18,8 @@ const [isPlaying, setIsPlaying] = useState(false)
       
       <Song currentSong={currentSong} />
       <Player setIsPlaying={setIsPlaying} isPlaying={isPlaying} currentSong= {currentSong} />
-      <Library songs={songs}/>
+      <Library songs={songs} setCurrentSong={setCurrentSong}/>
+      
     </div>
   );
 }
