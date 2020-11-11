@@ -14,7 +14,7 @@ A react music app that plays a selection of lofi songs.
 
 ## Demo
 
-![Link Here]('https://lofi-music-station.herokuapp.com/')
+[Link Here]('https://lofi-music-station.herokuapp.com/')
 
 ## Resources and Tech used:
 
