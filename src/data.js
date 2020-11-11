@@ -77,7 +77,7 @@ function lofiHop() {
         },
         {
             name: 'Tending The Garden',
-            cover:'https://i.pinimg.com/originals/91/d4/96/91d49600c857ea92ac9985f34d07370b.jpg',
+            cover:'https://chillhop.com/wp-content/uploads/2020/07/d9cef192a40176c391f027231b399322ce91197d-1024x1024.jpg',
             artist:'Stan Forebee, Kennebec',
             audio:'https://mp3.chillhop.com/serve.php/?mp3=9292',
             color: ['#C2ACAC', '#A7888C'],
