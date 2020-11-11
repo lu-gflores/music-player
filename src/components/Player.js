@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlay, faAngleLeft, faAngleRight, faPause} from '@fortawesome/free-solid-svg-icons'
-
+import {playAudio} from '../util'
 const Player = ({audioRef, currentSong, isPlaying, setIsPlaying, setSongInfo, songInfo, songs, setCurrentSong, setSongs}) => {
    
     //useEffect
@@ -67,12 +67,14 @@ const Player = ({audioRef, currentSong, isPlaying, setIsPlaying, setSongInfo, so
             //if song is the first in array, go to last song in the array instead
             if((currentIndex - 1) % songs.length === -1) {
                 setCurrentSong(songs[songs.length - 1 ]);
+                playAudio(isPlaying, audioRef);
                 return; //with this return, it keeps the next line from running and crashing the app
             }
             //go back one song
             setCurrentSong(songs[(currentIndex - 1) % songs.length] )
         }
-        console.log(currentIndex + 1)
+        playAudio(isPlaying, audioRef)
+        //console.log(currentIndex + 1)
     }
 
     return (
@@ -80,7 +82,7 @@ const Player = ({audioRef, currentSong, isPlaying, setIsPlaying, setSongInfo, so
             <div className="time-control">
                 <p>{getTime(songInfo.currentTime)}</p>
                 <input min={0} max={songInfo.duration || 0} value={songInfo.currentTime} onChange={dragHandler} type="range"/>
-                <p>{getTime(songInfo.duration)}</p>
+                <p>{songInfo.duration ? getTime(songInfo.duration) : '0:00'}</p>
             </div>
             <div className="play-control">
                 <FontAwesomeIcon onClick={() => skipTrackHandlerDirection('skip-back')} className='skip-back' size='2x'icon={faAngleLeft}/>
