@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faPlay, faAngleLeft, faAngleRight, faPause} from '@fortawesome/free-solid-svg-icons'
-import {playAudio} from '../util'
+
 const Player = ({audioRef, currentSong, isPlaying, setIsPlaying, setSongInfo, songInfo, songs, setCurrentSong, setSongs}) => {
    
     //useEffect
@@ -55,25 +55,25 @@ const Player = ({audioRef, currentSong, isPlaying, setIsPlaying, setSongInfo, so
         audioRef.current.currentTime = e.target.value
         setSongInfo({...songInfo, currentTime:e.target.value})
     }
-    const skipTrackHandlerDirection = direction => {
+    const skipTrackHandlerDirection = async (direction) => {
         let currentIndex = songs.findIndex((song) => song.id === currentSong.id)
 
         if(direction ==='skip-forward') {
             //if song reaches end of index, go back go 0 index (first song in library)
-            setCurrentSong(songs[(currentIndex + 1) % songs.length] )
+           await setCurrentSong(songs[(currentIndex + 1) % songs.length] )
         }
 
         if(direction === 'skip-back') {
             //if song is the first in array, go to last song in the array instead
             if((currentIndex - 1) % songs.length === -1) {
-                setCurrentSong(songs[songs.length - 1 ]);
-                playAudio(isPlaying, audioRef);
+                await setCurrentSong(songs[songs.length - 1 ]);
+                if(isPlaying) audioRef.current.play();
                 return; //with this return, it keeps the next line from running and crashing the app
             }
             //go back one song
-            setCurrentSong(songs[(currentIndex - 1) % songs.length] )
+          await setCurrentSong(songs[(currentIndex - 1) % songs.length] )
         }
-        playAudio(isPlaying, audioRef)
+        if(isPlaying) audioRef.current.play();
         //console.log(currentIndex + 1)
     }
     //Add styles
