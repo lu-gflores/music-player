@@ -5,7 +5,6 @@ import Library from './components/Library'
 import Nav from './components/Nav'
 import data from './data'
 
-
 import './styles/app.scss'
 
 function App() {
@@ -30,7 +29,7 @@ const timeUpdateHandler = (e) => {
   const roundedCurrent = Math.round(current)
   const roundedDuration = Math.round(duration)
   const animation = Math.round((roundedCurrent / roundedDuration)* 100)
-  console.log(animation)
+  //console.log(animation)
   setSongInfo({...songInfo, currentTime: current, duration, animationPercentage: animation})
 }
 //skip forward to next song
@@ -42,7 +41,7 @@ const songEndHandler = async () => {
 }
 
   return (
-    <div className="App">
+    <div className={`App ${libraryStatus ? 'library-active' : ''}`}>
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
       <Song currentSong={currentSong} />
       <Player setSongs={setSongs} songs={songs} audioRef ={audioRef} setIsPlaying={setIsPlaying} isPlaying={isPlaying} currentSong= {currentSong} setSongInfo={setSongInfo} songInfo= {songInfo} setCurrentSong={setCurrentSong} />
